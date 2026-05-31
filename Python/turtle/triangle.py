@@ -13,3 +13,6 @@ zelva.speed(2)
 for i in range(3):
     zelva.left(120)
     zelva.forward(100)
+
+
+turtle.done()
