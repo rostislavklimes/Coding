@@ -1,6 +1,7 @@
 import turtle
 
 zelva = turtle.Turtle("turtle")
+zelva.speed(1)
 window = turtle.setup(800, 800)
 window = turtle.bgcolor(97/255, 89/255, 247/255)
 

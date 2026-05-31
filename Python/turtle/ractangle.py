@@ -3,6 +3,7 @@ import time
 
 
 zelva = turtle.Turtle("turtle")
+zelva.speed(1)
 window = turtle.setup(800, 800)
 window = turtle.bgcolor(252/255, 3/255, 207/255)
 
