@@ -1,6 +1,15 @@
-balance = 1000
-cash = 500
+file = open("Python/data/bank_account.txt", "r", encoding="utf-8")
+data = file.read().split("\n")
+
+balance = int(data[0])
+cash = int(data[1])
 transactions = []
+
+for t in data[2:]:
+    if t != "":
+        transactions.append(t)
+
+file.close()
 
 def show_balance(balance, cash):
     print(f"You have {balance}$ on your bank account and {cash}$ in cash")
@@ -53,3 +62,10 @@ while True:
         balance, cash = withdraw(amount, balance, cash)
     elif choice == 5:
         break
+
+file = open("Python/data/bank_account.txt", "w", encoding="utf-8")
+file.write(str(balance) + "\n")
+file.write(str(cash) + "\n")
+for transaction in transactions:
+    file.write(transaction + "\n")
+file.close()
