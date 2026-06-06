@@ -43,7 +43,7 @@ def withdraw(amount, balance, cash):
 
 while True:
     print()
-    print("1 - show balancene\n2 - show transactions history\n3 - deposit money\n4 - withdraw money\n5 - end")
+    print("1 - show balance\n2 - show transactions history\n3 - deposit money\n4 - withdraw money\n5 - end")
     print()
     choice = int(input("Enter your choice: "))
     if choice == 1:
