@@ -4,6 +4,8 @@ data = file.read().split("\n")
 balance = int(data[0])
 cash = int(data[1])
 transactions = []
+pin = 3085
+attempts = 3
 
 for t in data[2:]:
     if t != "":
@@ -41,27 +43,40 @@ def withdraw(amount, balance, cash):
         print("Not enough money on your bank balance")
     return balance, cash
 
+pin_choice = int(input("Enter your pin: "))
 while True:
-    print()
-    print("1 - show balance\n2 - show transactions history\n3 - deposit money\n4 - withdraw money\n5 - end")
-    print()
-    choice = int(input("Enter your choice: "))
-    if choice == 1:
-        print()
-        show_balance(balance, cash)
-    elif choice == 2:
-        print()
-        transactions_history(transactions)
-    elif choice == 3:
-        print()
-        amount = int(input("Enter amount you would like to deposit: "))
-        balance, cash = deposit(amount, balance, cash)
-    elif choice == 4:
-        print()
-        amount = int(input("Enter amount you would like to withdraw: "))
-        balance, cash = withdraw(amount, balance, cash)
-    elif choice == 5:
+    while pin_choice != pin:
+        if attempts == 0:
+            break
+        else:
+            print(f"You entered wrong pin, you have {attempts} attempts")
+            pin_choice = int(input("Enter your pin: "))
+            attempts -= 1
+        if attempts == 0:
+            break
+    if pin_choice != pin:
         break
+    while True:
+        print()
+        print("1 - show balance\n2 - show transactions history\n3 - deposit money\n4 - withdraw money\n5 - end")
+        print()
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            print()
+            show_balance(balance, cash)
+        elif choice == 2:
+            print()
+            transactions_history(transactions)
+        elif choice == 3:
+            print()
+            amount = int(input("Enter amount you would like to deposit: "))
+            balance, cash = deposit(amount, balance, cash)
+        elif choice == 4:
+            print()
+            amount = int(input("Enter amount you would like to withdraw: "))
+            balance, cash = withdraw(amount, balance, cash)
+        elif choice == 5:
+            break
 
 file = open("Python/data/bank_account.txt", "w", encoding="utf-8")
 file.write(str(balance) + "\n")
