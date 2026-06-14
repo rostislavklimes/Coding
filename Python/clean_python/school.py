@@ -1,7 +1,21 @@
-students = {
-    "adam": [1, 4, 2],
-    "sam": [3, 1, 1]
-}
+students = {}
+file = open("Python/data/school.txt", "r", encoding="utf-8")
+data = file.read().split("\n")
+try:
+    for i in data:
+        if i != "":
+            name, grades = i.split(";")
+            new_grades = []
+            for grade in grades.split(","):
+                new_grades.append(int(grade))    
+            students[name] = new_grades
+        else:
+            pass
+except:
+    print("No students loaded")
+file.close()
+if len(students) == 0:
+    print("No student loaded")
 
 while True:
     choice = int(input("Enter 1 for add a student, 2 for add a grade for a student, 3 for show grades of a student" \
@@ -15,7 +29,7 @@ while True:
     elif choice == 2:
         try:
             name = input("Enter the name of student you would like to add a grade: ")
-            grade = int(input(f"Enter a grade you would like to assign to {name}"))
+            grade = int(input(f"Enter a grade you would like to assign to {name}: "))
             students[name].append(grade)
         except KeyError:
             print("The name you entered does not exist")
@@ -49,3 +63,13 @@ while True:
         break
     else:
         print("You did not enter valid number")
+
+file = open("Python/data/school.txt", "w", encoding="utf-8")
+for name in students:
+    grades = students[name]
+    grades_text = ""
+    for grade in grades:
+        grades_text += str(grade) + ","
+    grades_text = grades_text[:-1]
+    file.write(f"{name};{grades_text}\n")
+file.close()
