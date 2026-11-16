@@ -123,7 +123,7 @@ class PokedexApp:
 
             if already_saved == False: 
                 self.saved_pokemons.append(pokemon_data)
-                with open("pokemon.json", "w") as file:
+                with open(self.json_path, "w") as file:
                     json.dump(self.saved_pokemons, file)
                 self.show_cards()
             self.result.configure(text = "Pokémon: " + data["name"] + "\nID: " + str(pokemon_id) + "\nHeight: " + str(pokemon_height) + " cm" + "\nWeight: " + str(pokemon_weight) + " kg" + "\nType: " + pokemon_types_text)
@@ -217,7 +217,7 @@ class PokedexApp:
                 self.saved_pokemons.remove(pokemon)
                 break
 
-        with open("pokemon.json", "w") as file:
+        with open(self.json_path, "w") as file:
             json.dump(self.saved_pokemons, file)
         self.show_cards()
 
