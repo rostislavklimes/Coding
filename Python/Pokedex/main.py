@@ -3,7 +3,7 @@ import json
 import customtkinter as ctk
 from PIL import Image
 from io import BytesIO
-
+from pathlib import Path
 class PokemonNotFoundError(Exception):
     pass
 
@@ -12,7 +12,8 @@ class PokedexApp:
         self.okno = ctk.CTk()
         self.okno.configure(fg_color="#0F172A")
         self.saved_pokemons = []
-        with open("pokemon.json", "r") as file:
+        self.json_path = Path(__file__).parent / "pokemon.json"
+        with open(self.json_path, "r") as file:
              self.saved_pokemons = json.load(file)
         self.okno.title("Pokédex")
         self.okno.geometry("1200x900")
